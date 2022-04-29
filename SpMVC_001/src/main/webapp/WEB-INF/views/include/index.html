@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나의 홈페이지</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header div {
+        width: 100%;
+        background-color: black;
+        color: white;
+        font-size: 50px;
+        font-weight: 900;
+        text-align: center;
+        text-shadow: 1px 1px 1px black;
+        padding: 1.2rem;
+      }
+      header nav {
+        background-color: blue;
+        border-radius: 10px;
+        margin: 0 1px;
+        width: 100%;
+      }
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+      nav li {
+        padding: 11px 16px;
+        color: white;
+        border: 3px solid transparent;
+      }
+      nav li:nth-of-type(1) {
+        padding-left: 50px;
+      }
+      nav li:nth-of-type(4) {
+        margin: auto 0 0 auto;
+        padding-right: 50px;
+      }
+      section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      section table {
+        width: 95%;
+        margin: 20px 10px;
+        border-collapse: collapse;
+      }
+
+      section table thead tr {
+        border-top: 1px solid #777;
+        background-color: #999;
+      }
+      section table thead tr,
+      section table tbody tr {
+        border-bottom: 1px solid #777;
+      }
+      section table tbody td {
+        text-align: center;
+      }
+      main div {
+        display: flex;
+        justify-content: end;
+        align-items: flex-end;
+      }
+
+      div button {
+        background-color: blue;
+        color: white;
+        font-size: 20px;
+        outline: none;
+        border: none;
+        padding: 10px 16px;
+        margin-right: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>고려 고교 학사관리 2022 v1</div>
+      <nav>
+        <ul>
+          <li>HOME</li>
+          <li>학생정보</li>
+          <li>성적알람표</li>
+          <li>로그인</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>학번</th>
+              <th>이름</th>
+              <th>전공</th>
+              <th>학년</th>
+              <th>주소</th>
+              <th>전화번호</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>20210001</td>
+              <td>홍길동</td>
+              <td>컴퓨터공학</td>
+              <td>2</td>
+              <td>서울시 동대문구</td>
+              <td>02-222-1234</td>
+            </tr>
+            <tr>
+              <td>20210002</td>
+              <td>성춘향</td>
+              <td>전자공학</td>
+              <td>3</td>
+              <td>전라북도 익산시</td>
+              <td>063-111-1234</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <div>
+        <button>학생정보 추가</button>
+      </div>
+    </main>
+  </body>
+  <script>
+    const header = document.querySelector("header");
+    const section = document.querySelector("section");
+    const headerHeight = header.offsetHeight;
+    const headerWidth = header.offsetWidth;
+    section.style.marginTop = headerHeight + 10 + "px";
+  </script>
+</html>
