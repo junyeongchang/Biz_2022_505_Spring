@@ -1,5 +1,9 @@
 package com.callor.school.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,15 +11,36 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.callor.school.model.StudentVO;
+import com.callor.school.service.StudentService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping(value = "/student")
 public class StudentController {
+	
+	/*
+	 * Setter 주입
+	 * StudentController studentController = new StudentController();
+	 * studentController.setStService(stService);
+	 * 
+	 * 보통 @Autowired를 사용한 Setter 주입 방식을 사용하는데
+	 * Setter 주입방식에서는 메모리 릭(leak, 누수)가 발생하기도
+	 * 한다.
+	 * 최근에는 생성자 주입방식을 적극 권장하고 있다.
+	 */
+	@Autowired
+	@Qualifier("stServiceV1")
+	private StudentService stService;
 
 	// localhost:8080/school/student 또는
 	// localhost:8080/school/student/
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public String list(Model model) {
+		List<StudentVO> stList = stService.selectAll();
+		
+		model.addAttribute("ST_LIST", stList);
 		model.addAttribute("LAYOUT", "ST_LIST");
 		return "home";
 	}
@@ -31,7 +56,8 @@ public class StudentController {
 	@RequestMapping(value = "/input", method=RequestMethod.POST)
 	// form에서 전달된 데이터를 VO객체를 사용하여 받기
 	public String input(StudentVO stVO) {
-		System.out.println(stVO.toString());
+		log.debug(stVO.toString());
+		stService.insert(stVO);
 		return "home";
 	}
 	// form에서 전달된 데이터를 개별 변수로 받기
@@ -46,9 +72,12 @@ public class StudentController {
 		return "home";
 	}
 	
+	
 	@ResponseBody
-	@RequestMapping(value="/st_num_check", method=RequestMethod.GET)
+	@RequestMapping(value = "/st_num_check", method = RequestMethod.GET)
 	public String st_num_check(String st_num) {
-		return "korea";
+		StudentVO stVO = stService.findByNum(st_num);
+		if (stVO == null) return "NOT";
+		return "USE";
 	}
 }
