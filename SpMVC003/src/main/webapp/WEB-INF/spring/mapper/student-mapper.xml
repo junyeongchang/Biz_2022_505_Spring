@@ -24,7 +24,7 @@
 	public List<StudentVO> selectAll()
 	public int insert(StudentVO vo)
 -->
-<mapper namespace="com.callor.school.persistance.StduentDao">
+<mapper namespace="com.callor.school.persistance.StudentDao">
 
 	<select id="selectAll" resultType="StudentVO">
 		SELECT * FROM tbl_student

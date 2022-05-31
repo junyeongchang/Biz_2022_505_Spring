@@ -1,6 +1,7 @@
 package com.callor.school.controller;
 
 import java.util.Locale;
+import java.util.Random;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
