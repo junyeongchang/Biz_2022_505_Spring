@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.callor.naver.persistance.BookUserDao">
+	<select id="selectAll" resultType="BookUserVO">
+		SELECT * FROM tbl_books
+	</select>
+	<insert id="insert" parameterType="BookUserVO">
+		INSERT INTO tbl_books(
+		isbn,
+		title,
+		author,
+		publisher,
+		price,
+		discount,
+		description,
+		pubdate,
+		link,
+		image
+		)
+		values(
+		#{isbn},
+		#{title},
+		#{author},
+		#{publisher},
+		#{price},
+		#{discount},
+		#{description},
+		#{pubdate},
+		#{link},
+		#{image}
+		)
+	</insert>
+</mapper>

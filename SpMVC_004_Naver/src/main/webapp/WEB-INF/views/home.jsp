@@ -35,7 +35,7 @@ section {
 <script>
 	const rootPath = "${rootPath}"
 </script>
-<script src="${rootPath}/static/js/input.js?ver=2022-05-31-006"></script>
+<script src="${rootPath}/static/js/input.js?ver=2022-05-31-008"></script>
 </head>
 <body>
 	<header>
