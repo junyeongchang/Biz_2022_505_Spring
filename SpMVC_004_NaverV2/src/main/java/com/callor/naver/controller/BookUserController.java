@@ -29,12 +29,12 @@ public class BookUserController {
 		return null;
 	}
 
-	@RequestMapping(value = "/bookUpdate")
+	@RequestMapping(value = "/insert")
 	public String bookUpdate(Model model) {
 		return "/list";
 	}
 
-	@RequestMapping(value = "/bookUpdate", method = RequestMethod.POST)
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String bookUpdate() {
 		return null;
 	}

@@ -59,7 +59,7 @@ table.ch-booklist {
 			</c:forEach>
 		</table>
 		<div class="ch-btn-div">
-			<button class="ch-btn-black"><a href="${rootPath}/book/insert">도서정보</a></button>
+			<button class="ch-btn-black"><a href="${rootPath}/user/insert">도서정보추가</a></button>
 		</div>
 		<div> 1 2 3 4 5</div>
 	</section>
