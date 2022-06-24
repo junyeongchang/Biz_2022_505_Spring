@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.callor.images.persistance.SelfitDao">
+
+	<select id="selectDayHealth" resultType="WorkOutDTO">
+		select * from view_workout
+		where sl_scid = #{sc_id} and sl_listid = #{sc_listid}
+	</select>
+	
+	<select id="selectWorkOut" resultType="WorkOutDTO">
+		select * from view_workout
+		where sl_scid = #{sc_id}
+		order by sc_num, sc_day
+	</select>
+
+	<select id="workOutView" resultType="WorkOutDTO">
+		select * from view_workout
+		where sl_scid = #{sl_scid}
+	</select>
+	<select id="selectStartMenu" resultType="StartMenuDTO">
+		select sc_num, sc_label, sc_division 
+			from tbl_sch
+			group by sc_num, sc_label, sc_division
+			order by sc_num
+	</select>
+	<select id="selectByScNum" resultType="StartMenuDTO">
+		select sc_num, sc_label, sc_division 
+			from tbl_sch
+			where substr(sc_num,1,2) = #{sc_num}
+			group by sc_num, sc_label, sc_division
+			order by sc_num
+	</select>
+	<select id="selectDaySet" resultType="StartMenuDTO">
+		select sc_id, sc_num, sc_label, sc_part, sc_day 
+		from tbl_sch
+		where sc_num=#{sc_num}
+	</select>
+	<select id="create_bbs_table">
+		CREATE TABLE tbl_bbs (
+			b_seq 		number	 		PRIMARY KEY,
+			b_date		VARCHAR2(10) 	NOT NULL,
+			b_time 		VARCHAR2(10)	NOT NULL,
+			b_writer	VARCHAR2(125) 	NOT NULL,
+			b_subject 	nVARCHAR2(125) 	NOT NULL,
+			b_content	nVARCHAR2(1000) NOT NULL 	
+		)
+	</select>
+	
+
+</mapper> 

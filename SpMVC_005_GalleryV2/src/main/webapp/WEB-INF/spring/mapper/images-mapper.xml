@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.callor.images.persistance.BBsDao">
+<!-- insert 명령문을 실행하기 전에 (BEFORE)
+	 seq 를 생성하는 select 문을 먼저 실행하고
+	 그 결과를 BBsVO의 b_seq 변수에 담아라
+-->
+<insert id="insert" parameterType="BBsVO">
+	<selectKey keyProperty="b_seq" resultType="Long" order="BEFORE">
+		select seq_bbs.nextval from dual
+	</selectKey>
+	insert into tbl_bbs(
+		b_seq, 
+		b_date, 
+		b_time, 
+		b_writer, 
+		b_subject, 
+		b_content
+	)
+	values (
+		#{b_seq}, 
+		#{b_date}, 
+		#{b_time}, 
+		#{b_writer}, 
+		#{b_subject}, 
+		#{b_content}
+	)
+</insert>
+
+<select id="create_images_table">
+	CREATE TABLE tbl_images (
+		i_seq 			number	 		PRIMARY KEY,
+		i_bseq			number		 	NOT NULL,
+		i_originalName	VARCHAR2(255)	NOT NULL,
+		i_imageName		VARCHAR2(255) 	NOT NULL
+	)
+</select>
+
+<select id="create_bbs_seq">
+	create SEQUENCE seq_bbs
+	INCREMENT by 1 start with 1
+</select>
+
+
+
+</mapper> 
