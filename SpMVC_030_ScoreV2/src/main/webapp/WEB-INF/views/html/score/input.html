@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	data-layout-decoretor="~{layout}">
+
+<th:block layout:fragment="content">
+	<div class="student detail_body">
+		<div>학번 :</div>
+		<div class="student detail">${STUDENT.st_num}</div>
+	</div>
+	<div class="student detail_body">
+		<div>이름 :</div>
+		<div class="student detail">${STUDENT.st_name}</div>
+	</div>
+	<div class="student detail_body">
+		<div>학과 :</div>
+		<div class="student detail">${STUDENT.st_dept}</div>
+	</div>
+	<div class="student detail_body">
+		<div>전화번호 :</div>
+		<div class="student detail">${STUDENT.st_tel}</div>
+	</div>
+	<div class="student detail_body">
+		<div>주소 :</div>
+		<div class="student detail">${STUDENT.st_addr}</div>
+	</div>
+<style>
+	form.score-input {
+	}
+</style>
+	<form mehtod="post" class = "score-input">
+		<div th:each="SCORE :${STUDENT.scoreList}"  th:object="${SCORE}" class="score-input-list">
+			<input th:value="*{sc_sbcode}" name="sb_code"/>
+			<div th:text="*{sc_name}"/>
+			<input th:value="*{sc_score}" name="sc_score"/>
+		</div>
+		<button>저장</button>
+	</form>
+	<div>
+		<a href="@{/student/update(st_num=${STUDENT.st_num})}">수정하기</a> <a
+			href="@{/student }">학생리스트</a>
+	</div>
+</th:block>
