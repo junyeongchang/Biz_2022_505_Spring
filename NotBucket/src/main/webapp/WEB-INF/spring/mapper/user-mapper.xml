@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.todo.persistance.UserDao">
+ 
+ 	<select id="selectAll" resultType="UserVO">
+ 		SELECT * FROM tbl_users
+ 		
+ 	</select>
+ 	<select id="findById" resultType="UserVO">
+ 		SELECT * FROM tbl_users WHERE username = #{username}
+ 	</select>
+ 	
+ 	<insert id="insert">
+ 		INSERT INTO tbl_users(
+			username,
+			password,
+			enabled,
+			realname,
+			nickname
+		) VALUES(
+			#{username},
+			#{password},
+			#{enabled},
+			#{realname},
+			#{nickname}
+		)
+ 	</insert>
+ 	<update id="update"></update>
+ 	<delete id="delete"></delete>
+ 	
+ 
+ </mapper> 

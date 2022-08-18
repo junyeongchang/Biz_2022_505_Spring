@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.todo.persistance.NotBucketDao">
+ 
+ 	<select id="selectAll">
+ 		SELECT * FROM tbl_notbucket
+ 	</select>
+ 	
+ 	<select id="findByUsername" resultType="NotBucketVO">
+ 	</select>
+ 	
+ 	<select id="findById" resultType="NotBucketVO">
+ 	</select>
+ 	
+ 	<insert id="insert">
+ 	</insert>
+ 	
+ 	<update id="update">
+ 	</update>
+ 	<delete id="delete"></delete>
+ 	
+ 	<select id="create_notbucket_table">
+ 		CREATE TABLE IF NOT EXISTS tbl_notbucket (
+ 			n_seq BIGINT AUTO_INCREMENT PRIMARY KEY,
+		    n_username VARCHAR(20) NOT NULL,
+		    n_sdate VARCHAR(10) NOT NULL,
+		    n_stime VARCHAR(10) NOT NULL,
+		    n_title VARCHAR(100) NOT NULL,
+		    n_content VARCHAR(125) NOT NULL,
+		    n_edate VARCHAR(10),
+		    n_etime VARCHAR(10)
+		)
+ 	</select>
+ </mapper> 
