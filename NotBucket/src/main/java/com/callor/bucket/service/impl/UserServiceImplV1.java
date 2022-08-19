@@ -2,11 +2,19 @@ package com.callor.bucket.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.callor.bucket.model.UserVO;
+import com.callor.bucket.persistance.UserDao;
 import com.callor.bucket.service.UserService;
 
+@Service
 public class UserServiceImplV1 implements UserService{
 
+	@Autowired
+	private UserDao userDao; 
+	
 	@Override
 	public List<UserVO> selectAll() {
 		// TODO Auto-generated method stub
@@ -21,7 +29,7 @@ public class UserServiceImplV1 implements UserService{
 
 	@Override
 	public int insert(UserVO vo) {
-		// TODO Auto-generated method stub
+		userDao.insert(vo);
 		return 0;
 	}
 

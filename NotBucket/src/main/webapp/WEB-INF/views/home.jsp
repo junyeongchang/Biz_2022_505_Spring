@@ -56,7 +56,10 @@ nav li:nth-of-type(2) {
 main.ch-main {
 	flex: 1;
 }
-
+article.ch-article{
+	display: flex;
+	flex-direction: row;
+}
 footer.ch-footer {
 	height: 10%;
 	background-color: black;
@@ -87,13 +90,21 @@ footer.ch-footer {
 			</ul>
 		</nav>
 		<main class="ch-main">
-			<section>
-				<div>
-					<div>게시판 목록1</div>
-					<div>게시판 목록2</div>
-					<div>로그인 시 보이는 자기 게시판2</div>
-				</div>
-			</section>
+			<c:choose>
+				<c:when test="${LAYOUT == 'JOIN' }">
+					<%@ include file="/WEB-INF/views/user/join.jsp"%>
+				</c:when>
+				<c:when test="${LAYOUT == 'LOGIN' }">
+					<%@ include file="/WEB-INF/views/user/login.jsp"%>
+				</c:when>
+				<c:otherwise>
+					<article class="ch-article">
+						<h1>게시판1</h1>
+						<h1>게시판2</h1>
+						<h1>게시판3</h1>
+					</article>
+				</c:otherwise>
+			</c:choose>
 		</main>
 		<footer class="ch-footer">
 			<address>CopyRight &copy; jychang11@naver.com</address>

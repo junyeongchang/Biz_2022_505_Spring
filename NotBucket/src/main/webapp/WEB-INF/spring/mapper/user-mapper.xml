@@ -13,18 +13,18 @@
  		SELECT * FROM tbl_users WHERE username = #{username}
  	</select>
  	
- 	<insert id="insert">
+ 	<insert id="insert" parameterType="UserVO">
  		INSERT INTO tbl_users(
 			username,
 			password,
-			enabled,
 			realname,
+			email,
 			nickname
 		) VALUES(
 			#{username},
 			#{password},
-			#{enabled},
 			#{realname},
+			#{email},
 			#{nickname}
 		)
  	</insert>
