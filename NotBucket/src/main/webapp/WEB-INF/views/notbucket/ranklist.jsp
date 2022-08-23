@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+게시판1
+랭크 리스트
 </body>
 </html>

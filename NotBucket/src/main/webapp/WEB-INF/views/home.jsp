@@ -53,13 +53,23 @@ nav li:nth-of-type(2) {
 	margin-left: auto;
 }
 
+
+
 main.ch-main {
 	flex: 1;
-}
-article.ch-article{
+	padding: 5px;
 	display: flex;
 	flex-direction: row;
 }
+
+main.ch-main article {
+	flex: 1;
+	margin: 0 5px;
+	border: 1px solid black;
+}
+
+
+
 footer.ch-footer {
 	height: 10%;
 	background-color: black;
@@ -84,7 +94,8 @@ footer.ch-footer {
 						<li><a href="${rootPath}/user/join">회원가입</a></li>
 					</c:when>
 					<c:otherwise>
-						<li>로그아웃</li>
+						<li><a href="${rootPath}/user/mypage">${USER.username}님 MyPage</a></li>
+						<li><a href="${rootPath}/user/logout">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -97,11 +108,18 @@ footer.ch-footer {
 				<c:when test="${LAYOUT == 'LOGIN' }">
 					<%@ include file="/WEB-INF/views/user/login.jsp"%>
 				</c:when>
+				<c:when test="${LAYOUT == 'MYPAGE' }">
+					<%@ include file="/WEB-INF/views/user/mypage.jsp" %>
+			</c:when>
 				<c:otherwise>
-					<article class="ch-article">
-						<h1>게시판1</h1>
-						<h1>게시판2</h1>
-						<h1>게시판3</h1>
+					<article>
+						<%@include file="/WEB-INF/views/notbucket/ranklist.jsp"%>
+					</article>
+					<article>
+						<%@include file="/WEB-INF/views/notbucket/alllist.jsp"%>
+					</article>
+					<article>
+						<%@include file="/WEB-INF/views/notbucket/mylist.jsp"%>
 					</article>
 				</c:otherwise>
 			</c:choose>
