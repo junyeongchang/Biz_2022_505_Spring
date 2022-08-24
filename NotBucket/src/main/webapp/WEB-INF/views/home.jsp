@@ -25,6 +25,7 @@ header.ch-header {
 	height: 10%;
 	background-color: black;
 	color: white;
+	
 }
 
 nav {
@@ -65,7 +66,6 @@ main.ch-main {
 main.ch-main article {
 	flex: 1;
 	margin: 0 5px;
-	border: 1px solid black;
 }
 
 
@@ -110,16 +110,26 @@ footer.ch-footer {
 				</c:when>
 				<c:when test="${LAYOUT == 'MYPAGE' }">
 					<%@ include file="/WEB-INF/views/user/mypage.jsp" %>
-			</c:when>
+				</c:when>
+				<c:when test="${LAYOUT == 'INSERT' }">
+					<%@ include file="/WEB-INF/views/notbucket/insert.jsp" %>
+				</c:when>
 				<c:otherwise>
 					<article>
 						<%@include file="/WEB-INF/views/notbucket/ranklist.jsp"%>
 					</article>
 					<article>
-						<%@include file="/WEB-INF/views/notbucket/alllist.jsp"%>
+						<%@include file="/WEB-INF/views/notbucket/list.jsp"%>
 					</article>
 					<article>
-						<%@include file="/WEB-INF/views/notbucket/mylist.jsp"%>
+						<c:choose>
+							<c:when test="${empty USER}">
+								<%@include file="/WEB-INF/views/user/needLogin.jsp"%>
+							</c:when>
+							<c:otherwise>
+								<%@include file="/WEB-INF/views/notbucket/mylist.jsp"%>
+							</c:otherwise>
+						</c:choose>
 					</article>
 				</c:otherwise>
 			</c:choose>

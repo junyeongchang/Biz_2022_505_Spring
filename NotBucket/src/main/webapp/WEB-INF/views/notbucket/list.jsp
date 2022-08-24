@@ -14,7 +14,7 @@
 	<table class="notbucket-table">
 		<thead>
 			<tr>
-				<th>MY NOTBUCKET</th>
+				<th>ALL NOTBUCKET</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -26,6 +26,5 @@
 		</tbody>
 	</table>
 	<%@ include file="/WEB-INF/views/notbucket/pagination.jsp" %>
-	<a href="${rootPath}/notbucket/insert">NOT BUCKET 추가하기</a>
 </body>
 </html>

@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
- <mapper namespace="com.callor.todo.persistance.NotBucketDao">
+ <mapper namespace="com.callor.bucket.persistance.NotBucketDao">
  
- 	<select id="selectAll">
+ 	<select id="selectAll" resultType="NotBucketVO">
  		SELECT * FROM tbl_notbucket
  	</select>
  	
@@ -14,8 +14,25 @@
  	
  	<select id="findById" resultType="NotBucketVO">
  	</select>
+ 	<select id="searchAndPage" resultType="NotBucketVO">
+ 		SELECT * FROM
+		(
+			SELECT * FROM tbl_notbucket
+			WHERE b_title LIKE CONCAT('%', #{a_name}, '%' )
+			
+		) AS SUB
+		ORDER BY b_seq
+		LIMIT #{limit} OFFSET #{offset}
+ 	</select>
  	
- 	<insert id="insert">
+ 	<insert id="insert" parameterType="NotBucketVO">
+ 	INSERT INTO tbl_notbucket(
+ 			b_title,
+ 			b_content
+		) VALUES(
+			#{b_title},
+			#{b_content}
+		)
  	</insert>
  	
  	<update id="update">

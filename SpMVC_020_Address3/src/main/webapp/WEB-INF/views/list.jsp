@@ -36,7 +36,7 @@
 			<c:forEach items="${ADDRS}" var="ADDR">
 				<tr data-seq = "${ADDR.a_seq}">
 					<td>${ADDR.a_seq}</td>
-					<td>${ADDR.a_name}</a></td>
+					<td>${ADDR.a_name}</td>
 					<td>${ADDR.a_tel}</td>
 					<td>${ADDR.a_address}</td>
 				</tr>

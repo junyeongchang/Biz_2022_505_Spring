@@ -11,6 +11,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<table class="notbucket-table">
+		<thead>
+			<tr>
+				<th>MY NOTBUCKET</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>로그인이 필요합니다.</td>
+			</tr>
+			<tr>
+				<td><a href="${rootPath}/user/login">로그인한기</a></td>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>

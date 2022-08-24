@@ -103,8 +103,6 @@ public class AddressServiceImplV1 implements AddressService {
 	@Override
 	public List<AddressVO> searchAndPage(SearchPage searchPage) {
 		
-		
-		
 		return addrDao.searchAndPage(searchPage);
 	}
 

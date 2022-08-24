@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="rootPath" value="${pageContext.request.contextPath}"/>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<c:set var="rootPath" value="${pageContext.request.contextPath}" /> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-게시판1
-랭크 리스트
+	<table class="notbucket-table">
+		<thead>
+			<tr>
+				<th>추천수 많은 NOTBUCKET</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${NOTBUCKETS}" var="NOTBUCKET">
+				<tr data-seq = "${NOTBUCKET.b_seq}">
+					<td>${NOTBUCKET.b_title}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<%@ include file="/WEB-INF/views/notbucket/pagination.jsp" %>
 </body>
 </html>
