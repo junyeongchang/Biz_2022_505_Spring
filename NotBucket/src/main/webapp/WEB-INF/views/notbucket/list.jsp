@@ -11,10 +11,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table class="notbucket-table">
+	<table class="allnotbucket-table">
 		<thead>
 			<tr>
-				<th>ALL NOTBUCKET</th>
+				<th><span>ALL NOTBUCKET</span></th>
 			</tr>
 		</thead>
 		<tbody>

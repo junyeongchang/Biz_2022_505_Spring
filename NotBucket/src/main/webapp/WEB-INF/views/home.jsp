@@ -78,6 +78,12 @@ footer.ch-footer {
 	padding: 0.9rem;
 }
 </style>
+<script>
+	const rootPath = "${rootPath}"
+</script>
+<script src="${rootPath}/resources/js/alllist.js?ver=2022-08-25-001"></script>
+<script src="${rootPath}/resources/js/mylist.js?ver=2022-08-25-001"></script>
+<script src="${rootPath}/resources/js/ranklist.js?ver=2022-08-25-001"></script>
 </head>
 <body>
 	<div class="ch-main">
@@ -116,7 +122,7 @@ footer.ch-footer {
 				</c:when>
 				<c:otherwise>
 					<article>
-						<%@include file="/WEB-INF/views/notbucket/ranklist.jsp"%>
+						<%@include file="/WEB-INF/views/notbucket/ranklist/ranklist.jsp"%>
 					</article>
 					<article>
 						<%@include file="/WEB-INF/views/notbucket/list.jsp"%>
@@ -127,7 +133,7 @@ footer.ch-footer {
 								<%@include file="/WEB-INF/views/user/needLogin.jsp"%>
 							</c:when>
 							<c:otherwise>
-								<%@include file="/WEB-INF/views/notbucket/mylist.jsp"%>
+								<%@include file="/WEB-INF/views/notbucket/mylist/mylist.jsp"%>
 							</c:otherwise>
 						</c:choose>
 					</article>

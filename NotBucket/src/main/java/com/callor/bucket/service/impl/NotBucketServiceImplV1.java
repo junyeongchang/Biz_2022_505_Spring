@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 
 import com.callor.bucket.model.NotBucketVO;
 import com.callor.bucket.model.SearchPage;
+import com.callor.bucket.model.UserInsertNotBucketVO;
 import com.callor.bucket.persistance.NotBucketDao;
 import com.callor.bucket.service.NotBucketService;
 
@@ -22,22 +23,36 @@ public class NotBucketServiceImplV1 implements NotBucketService {
 		// TODO Auto-generated method stub
 		return notBucketDao.selectAll();
 	}
+	
+	@Override
+	public List<NotBucketVO> rankSelectAll() {
+		// TODO Auto-generated method stub
+		return notBucketDao.rankSelectAll();
+	}
+	
+	@Override
+	public List<NotBucketVO> mySelectAll(String username) {
+		// TODO Auto-generated method stub
+		return notBucketDao.mySelectAll(username);
+	}
 
 	@Override
 	public NotBucketVO findById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return notBucketDao.findById(id);
 	}
 
 	@Override
 	public int insert(NotBucketVO vo) {
-		return notBucketDao.insert(vo);
+		notBucketDao.insert(vo);
+		Long seq = vo.getB_seq();
+		return seq.intValue();
 	}
-
+	
 	@Override
 	public int update(NotBucketVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return notBucketDao.update(vo);
 	}
 
 	@Override
@@ -49,49 +64,71 @@ public class NotBucketServiceImplV1 implements NotBucketService {
 		private static final long LIST_PER_PAGE = 10;
 		// 화면 하단에 페이지 번호 출력 개수
 		private static final long PAGE_NO_COUNT = 10;
+		
 	@Override
 	public void searchAndPage(Model model, SearchPage searchPage) {
 		// pagination을 구현하기 위하여 전체 데이터 가져오기로
 				// 개수를 임시로 세팅
 				searchPage.setOffset(0);
 				searchPage.setLimit(notBucketDao.selectAll().size());
-
+				
+				String search = searchPage.getSearch();
+				search = search == null ? "" : search;
+				searchPage.setSearch(search);
+				
 				List<NotBucketVO> addrList = notBucketDao.searchAndPage(searchPage);
 				
 				long totalCount = addrList.size();
 				if(totalCount < 1) return;
-				searchPage.setListPerPage(10);
-				searchPage.setPageNoCount(10);
 				
-				long finalPageNo = totalCount / searchPage.getListPerPage();
-				searchPage.setFinalPageNo(finalPageNo);
+				long finalPageNo = totalCount / LIST_PER_PAGE;
+				// 화면 하단의 페이지번호를 클릭했을때 전달되는 값
+				long currentPageNo = searchPage.getCurrentPageNo();
 				
-				if(searchPage.getCurrentPageNo() > finalPageNo)
-					searchPage.setCurrentPageNo(finalPageNo) ;
+				// 삼항 연산자를 사용할때
+				currentPageNo = currentPageNo > 1 ?
+								(currentPageNo > finalPageNo 
+											? finalPageNo 
+											: currentPageNo
+								)
+								: 1;
+				// 일반적인 if 문을 사용할때
+				if(currentPageNo > finalPageNo) {
+					currentPageNo = finalPageNo;
+				}
+				if(currentPageNo < 1) {
+					currentPageNo = 1;
+				}
 				
-				if(searchPage.getCurrentPageNo() < 1)
-					searchPage.setCurrentPageNo(1);
+				// 선택된 페이지번호에 따라 화면하단 번호 리스트를 유동적으로
+				// 보여주기 위한 연산
+				long startPageNo = (currentPageNo / PAGE_NO_COUNT) * PAGE_NO_COUNT;
+				startPageNo = startPageNo < 1 ? 1 : startPageNo;
 				
-				long startPageNo = ((searchPage.getCurrentPageNo() - 1) 
-						/ searchPage.getPageNoCount()) 
-						* searchPage.getPageNoCount();
+				long endPageNo = startPageNo + PAGE_NO_COUNT;
 				
-				long endPageNo = startPageNo + searchPage.getPageNoCount() - 1;
+				endPageNo = endPageNo > finalPageNo ? finalPageNo : endPageNo;
 				
 				searchPage.setStartPageNo(startPageNo);
 				searchPage.setEndPageNo(endPageNo);
-				searchPage.setLimit(searchPage.getPageNoCount());
-				searchPage.setOffset(searchPage.getCurrentPageNo() 
-						* searchPage.getPageNoCount());
+				searchPage.setLimit(LIST_PER_PAGE);
+				searchPage.setOffset((currentPageNo - 1) * PAGE_NO_COUNT);
+				searchPage.setFinalPageNo(finalPageNo);
 				
-				model.addAttribute("PAGE",searchPage);;
-						
+				// JSP 롤 보내기 위해서 model 에 담기
+				model.addAttribute("PAGE", searchPage);
 	}
 
 	@Override
 	public List<NotBucketVO> searchAndPage(SearchPage searchPage) {
 		// TODO Auto-generated method stub
 		return notBucketDao.searchAndPage(searchPage);
+	}
+
+	@Override
+	public void userAndNotBucket(UserInsertNotBucketVO userInsertNotBucketVO) {
+		notBucketDao.userAndNotBucket(userInsertNotBucketVO);
+		
 	}
 
 }

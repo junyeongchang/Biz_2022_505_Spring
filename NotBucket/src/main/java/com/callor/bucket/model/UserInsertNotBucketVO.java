@@ -9,13 +9,12 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Builder
-public class NotBucketVO {
-	private Long b_seq;
-	private String b_title;
-	private String b_content;
-	private Long b_rec;
+public class UserInsertNotBucketVO {
+	private long m_seq;
+	private String username;
+	private long b_seq;
 }

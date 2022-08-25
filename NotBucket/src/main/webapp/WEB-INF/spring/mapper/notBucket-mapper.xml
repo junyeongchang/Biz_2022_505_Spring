@@ -8,17 +8,29 @@
  	<select id="selectAll" resultType="NotBucketVO">
  		SELECT * FROM tbl_notbucket
  	</select>
+ 	<select id="rankSelectAll" resultType="NotBucketVO">
+ 		SELECT * FROM tbl_notbucket where b_rec > 10
+ 	</select>
+ 	<select id="mySelectAll" resultType="NotBucketVO">
+ 	select * from  tbl_notbucket a
+		left join tbl_mynotbucket b
+    	on a.b_seq = b.b_seq
+	where username = #{username}
+ 		
+ 	</select>
  	
  	<select id="findByUsername" resultType="NotBucketVO">
+ 		select * from tbl_notbucket where username = #{username}
  	</select>
  	
  	<select id="findById" resultType="NotBucketVO">
+ 		select * from tbl_notbucket where b_seq=#{b_seq}
  	</select>
  	<select id="searchAndPage" resultType="NotBucketVO">
  		SELECT * FROM
 		(
 			SELECT * FROM tbl_notbucket
-			WHERE b_title LIKE CONCAT('%', #{a_name}, '%' )
+			WHERE b_title LIKE CONCAT('%', #{search}, '%' )
 			
 		) AS SUB
 		ORDER BY b_seq
@@ -26,16 +38,34 @@
  	</select>
  	
  	<insert id="insert" parameterType="NotBucketVO">
+	 	<selectKey keyProperty="b_seq" resultType="Long" order="BEFORE">
+	 			SELECT MAX(b_seq) + 1 FROM tbl_notbucket	
+	 	</selectKey>
  	INSERT INTO tbl_notbucket(
+ 			b_seq,
  			b_title,
  			b_content
 		) VALUES(
+			#{b_seq},
 			#{b_title},
 			#{b_content}
 		)
  	</insert>
+ 	<insert id="userAndNotBucket" parameterType="UserInsertNotBucketVO">
+ 	insert into tbl_mynotbucket(
+ 		username,
+ 		b_seq
+ 	) values (
+ 		#{username},
+ 		#{b_seq}
+ 	)
  	
- 	<update id="update">
+ 	</insert>
+ 	
+ 	<update id="update" parameterType="NotBucketVO">
+ 	UPDATE tbl_notbucket
+ 		SET b_rec = #{b_rec}
+ 		WHERE b_seq = #{b_seq}
  	</update>
  	<delete id="delete"></delete>
  	

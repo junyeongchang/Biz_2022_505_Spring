@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.callor.bucket.model.UserVO;
 import com.callor.bucket.service.UserService;
-
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {

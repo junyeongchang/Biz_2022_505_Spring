@@ -11,21 +11,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table class="notbucket-table">
+	<table class="ranknotbucket-table">
 		<thead>
 			<tr>
-				<th>MY NOTBUCKET</th>
+				<th><span>추천수 많은 NOTBUCKET</span></th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${NOTBUCKETS}" var="NOTBUCKET">
+			<c:forEach items="${RNOTBUCKETS}" var="NOTBUCKET">
 				<tr data-seq = "${NOTBUCKET.b_seq}">
 					<td>${NOTBUCKET.b_title}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-	<%@ include file="/WEB-INF/views/notbucket/pagination.jsp" %>
-	<a href="${rootPath}/notbucket/insert">NOT BUCKET 추가하기</a>
+	<%@ include file="/WEB-INF/views/notbucket/ranklist/pagination.jsp" %>
 </body>
 </html>
