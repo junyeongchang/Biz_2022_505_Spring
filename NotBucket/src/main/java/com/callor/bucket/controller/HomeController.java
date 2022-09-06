@@ -35,6 +35,9 @@ public class HomeController {
 		List<NotBucketVO> rankNotBucketList = notBucketService.rankSelectAll();
 		model.addAttribute("RNOTBUCKETS", rankNotBucketList);
 		
+		NotBucketVO notBucketMessage = notBucketService.findByRank();
+		model.addAttribute("MAXRANKNOTBUCKET", notBucketMessage);
+		
 		UserVO loginUser = (UserVO) session.getAttribute("USER");
 		if(loginUser == null) {
 			return "home";
@@ -42,7 +45,6 @@ public class HomeController {
 		
 		List<NotBucketVO> myNotBucketList = notBucketService.mySelectAll(loginUser.getUsername());
 		model.addAttribute("MNOTBUCKETS", myNotBucketList);
-		
 		
 		return "home";
 	}

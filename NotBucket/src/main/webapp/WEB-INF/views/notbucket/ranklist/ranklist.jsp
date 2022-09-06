@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table class="ranknotbucket-table">
+	<table class="ranknotbucket-table w3-container">
 		<thead>
 			<tr>
 				<th><span>추천수 많은 NOTBUCKET</span></th>
@@ -19,7 +19,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${RNOTBUCKETS}" var="NOTBUCKET">
-				<tr data-seq = "${NOTBUCKET.b_seq}">
+				<tr data-seq = "${NOTBUCKET.b_seq}" class="ch-content">
 					<td>${NOTBUCKET.b_title}</td>
 				</tr>
 			</c:forEach>

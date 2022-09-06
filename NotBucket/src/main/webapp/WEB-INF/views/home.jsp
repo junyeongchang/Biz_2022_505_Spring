@@ -21,7 +21,9 @@ div.ch-main {
 
 header.ch-header {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
+	justify-content: space-around;
+    align-items: center;
 	height: 10%;
 	background-color: black;
 	color: white;
@@ -77,6 +79,20 @@ footer.ch-footer {
 	text-align: center;
 	padding: 0.9rem;
 }
+table {
+	width : 100%;
+}
+table tr.ch-content:hover {
+	background-color: #ddd;
+}
+div.ch-btn {
+	margin-left: 10px;
+}
+div.ch-title {
+	color: red;
+	font-size: 50px;
+	font-weight: 900;
+}
 </style>
 <script>
 	const rootPath = "${rootPath}"
@@ -88,8 +104,8 @@ footer.ch-footer {
 <body>
 	<div class="ch-main">
 		<header class="ch-header">
-			<div>NOT message</div>
-			<div>확인 버튼</div>
+			<div> 추천수 가장 많은 NOT BUCKET </div>
+			<div class="ch-title">${MAXRANKNOTBUCKET.b_title}</div>
 		</header>
 		<nav>
 			<ul>

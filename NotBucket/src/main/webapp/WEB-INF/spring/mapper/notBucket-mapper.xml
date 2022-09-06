@@ -6,16 +6,20 @@
  <mapper namespace="com.callor.bucket.persistance.NotBucketDao">
  
  	<select id="selectAll" resultType="NotBucketVO">
- 		SELECT * FROM tbl_notbucket
+ 		SELECT * FROM tbl_notbucket order by b_rec desc
  	</select>
  	<select id="rankSelectAll" resultType="NotBucketVO">
- 		SELECT * FROM tbl_notbucket where b_rec > 10
+ 		SELECT * FROM tbl_notbucket where b_rec > 10 order by b_rec desc
+ 	</select>
+ 	<select id="findByRank" resultType="NotBucketVO">
+ 		select * from tbl_notbucket order by b_rec desc limit 1
  	</select>
  	<select id="mySelectAll" resultType="NotBucketVO">
  	select * from  tbl_notbucket a
 		left join tbl_mynotbucket b
     	on a.b_seq = b.b_seq
 	where username = #{username}
+	order by a.b_seq desc
  		
  	</select>
  	
@@ -33,7 +37,7 @@
 			WHERE b_title LIKE CONCAT('%', #{search}, '%' )
 			
 		) AS SUB
-		ORDER BY b_seq
+		ORDER BY b_seq desc
 		LIMIT #{limit} OFFSET #{offset}
  	</select>
  	

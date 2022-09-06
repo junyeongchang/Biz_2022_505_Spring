@@ -25,6 +25,11 @@ public class NotBucketServiceImplV1 implements NotBucketService {
 	}
 	
 	@Override
+	public NotBucketVO findByRank() {
+		return notBucketDao.findByRank();
+	}
+	
+	@Override
 	public List<NotBucketVO> rankSelectAll() {
 		// TODO Auto-generated method stub
 		return notBucketDao.rankSelectAll();
@@ -130,5 +135,7 @@ public class NotBucketServiceImplV1 implements NotBucketService {
 		notBucketDao.userAndNotBucket(userInsertNotBucketVO);
 		
 	}
+
+	
 
 }

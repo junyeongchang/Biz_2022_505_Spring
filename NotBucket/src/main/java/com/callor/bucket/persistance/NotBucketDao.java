@@ -15,6 +15,7 @@ public interface NotBucketDao extends GenericDao<NotBucketVO, Long>{
 	List<NotBucketVO> mySelectAll(String username);
 
 	List<NotBucketVO> rankSelectAll();
-
+	
+	NotBucketVO findByRank();
 
 }

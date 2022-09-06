@@ -19,7 +19,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${MNOTBUCKETS}" var="NOTBUCKET">
-				<tr data-seq = "${NOTBUCKET.b_seq}">
+				<tr data-seq = "${NOTBUCKET.b_seq}" class="ch-content">
 					<td>${NOTBUCKET.b_title}</td>
 				</tr>
 			</c:forEach>

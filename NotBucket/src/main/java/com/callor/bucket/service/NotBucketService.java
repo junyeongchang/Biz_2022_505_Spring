@@ -21,4 +21,5 @@ public interface NotBucketService extends NotBucketDao{
 
 	List<NotBucketVO> rankSelectAll();
 
+	NotBucketVO findByRank();
 }
